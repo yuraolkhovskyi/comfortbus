@@ -1,0 +1,50 @@
+package com.lp.work.comfortbus.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@Entity
+@Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "birth_date")
+    private String birthDate;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_ride",
+            joinColumns = {
+                    @JoinColumn(name = "user_id"),
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "ride_id")
+            }
+    )
+    private Set<RideEntity> rides = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<CommentEntity> comments;
+}

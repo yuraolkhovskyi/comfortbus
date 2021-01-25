@@ -1,0 +1,38 @@
+package com.lp.work.comfortbus.entity;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@Entity
+@Table(name = "buses")
+@AllArgsConstructor
+public class BusEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
+    private Long id;
+
+    @Column(name = "bus_number", updatable = false)
+    private String busNumber;
+
+    @Column(name = "number_of_seats", updatable = false)
+    private Long numberOfSeats;
+
+    @Column(name = "is_working", updatable = false)
+    private Boolean isWorking;
+
+    @Column(name = "is_rosette", updatable = false)
+    private Boolean isRosette;
+
+    @Column(name = "is_wifi", updatable = false)
+    private Boolean isWiFi;
+
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    private List<RideEntity> rides;
+
+}
