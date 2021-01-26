@@ -19,7 +19,7 @@ public class RideEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "direction_from")
@@ -28,11 +28,11 @@ public class RideEntity {
     @Column(name = "direction_to")
     private String directionTo;
 
-    @Column(name = "departure_time")
-    private LocalDate departureTime;
+    @Column(name = "departure_date")
+    private LocalDate departureDate;
 
-    @Column(name = "arrival_time")
-    private LocalDate arrivalTime;
+    @Column(name = "arrival_date")
+    private LocalDate arrivalDate;
 
     @Enumerated(EnumType.STRING)
     private RideStatus rideStatus;

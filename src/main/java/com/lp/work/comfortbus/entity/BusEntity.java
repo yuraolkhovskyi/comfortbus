@@ -2,6 +2,7 @@ package com.lp.work.comfortbus.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,11 +11,12 @@ import java.util.List;
 @Entity
 @Table(name = "buses")
 @AllArgsConstructor
+@NoArgsConstructor
 public class BusEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "bus_number", updatable = false)
