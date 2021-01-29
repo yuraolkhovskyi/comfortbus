@@ -1,5 +1,6 @@
 package com.lp.work.comfortbus.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,8 +35,10 @@ public class UserEntity {
     private String phoneNumber;
 
     @ManyToMany(mappedBy = "users")
+    @JsonIgnore
     private Set<RideEntity> rides = new LinkedHashSet<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<CommentEntity> comments;
 }

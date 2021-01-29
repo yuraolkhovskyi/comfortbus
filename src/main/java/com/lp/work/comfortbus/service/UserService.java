@@ -1,6 +1,10 @@
 package com.lp.work.comfortbus.service;
 
+import com.lp.work.comfortbus.dto.user.ResponseUserDTO;
 import com.lp.work.comfortbus.entity.UserEntity;
+import com.lp.work.comfortbus.exception.ExceptionConstants;
+import com.lp.work.comfortbus.exception.SystemException;
+import com.lp.work.comfortbus.exception.code.ServiceErrorCode;
 import com.lp.work.comfortbus.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,14 +26,19 @@ public class UserService {
     }
 
     //read
-    public List<UserEntity> findAll() {
-        return userRepository.findAll();
+    public List<ResponseUserDTO> findAll() {
+        final List<UserEntity> users = userRepository.findAll();
+
+        return users.stream()
+                .map(e -> new ResponseUserDTO(e.getFirstName(), e.getLastName(), e.getBirthDate(), e.getPhoneNumber()))
+                .collect(Collectors.toList());
+
     }
 
     public UserEntity findById(final Long userId) {
         Optional<UserEntity> user = userRepository.findById(userId);
         if (user.isEmpty()) {
-            throw new RuntimeException("There is no driver with such id:" + userId);
+            throw new SystemException(ExceptionConstants.BAD_REQUEST_MESSAGE, ServiceErrorCode.BAD_REQUEST);
         }
         return user.get();
     }

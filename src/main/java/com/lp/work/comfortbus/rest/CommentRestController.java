@@ -1,5 +1,7 @@
 package com.lp.work.comfortbus.rest;
 
+import com.lp.work.comfortbus.dto.comment.RequestCommentDTO;
+import com.lp.work.comfortbus.dto.comment.ResponseCommentDTO;
 import com.lp.work.comfortbus.entity.CommentEntity;
 import com.lp.work.comfortbus.service.CommentService;
 import lombok.AllArgsConstructor;
@@ -17,8 +19,8 @@ public class CommentRestController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public CommentEntity save(@RequestBody final CommentEntity commentEntity) {
-        return commentService.save(commentEntity);
+    public ResponseCommentDTO save(@RequestBody final RequestCommentDTO requestCommentDTO) {
+        return commentService.save(requestCommentDTO);
     }
 
     @GetMapping(value = "/list")
@@ -35,8 +37,8 @@ public class CommentRestController {
 
     @PatchMapping(value = "/update")
     @ResponseStatus(value = HttpStatus.OK)
-    public CommentEntity update(@RequestBody final CommentEntity comment) {
-        return commentService.update(comment);
+    public ResponseCommentDTO update(@RequestBody final RequestCommentDTO requestCommentDTO) {
+        return commentService.update(requestCommentDTO);
     }
 
     @DeleteMapping(value = "/delete/{commentId}")

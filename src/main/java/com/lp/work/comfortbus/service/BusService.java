@@ -2,6 +2,9 @@ package com.lp.work.comfortbus.service;
 
 import com.lp.work.comfortbus.entity.BusEntity;
 import com.lp.work.comfortbus.entity.DriverEntity;
+import com.lp.work.comfortbus.exception.ExceptionConstants;
+import com.lp.work.comfortbus.exception.SystemException;
+import com.lp.work.comfortbus.exception.code.ServiceErrorCode;
 import com.lp.work.comfortbus.repository.BusRepository;
 import com.lp.work.comfortbus.repository.DriverRepository;
 import lombok.AllArgsConstructor;
@@ -32,7 +35,7 @@ public class BusService {
     public BusEntity findById(final Long busId) {
         Optional<BusEntity> bus = busRepository.findById(busId);
         if (bus.isEmpty()) {
-            throw new RuntimeException("There is no bus with such id:" + busId);
+            throw new SystemException(ExceptionConstants.BAD_REQUEST_MESSAGE, ServiceErrorCode.BAD_REQUEST);
         }
         return bus.get();
     }
@@ -40,7 +43,7 @@ public class BusService {
     //update
     public BusEntity update(final BusEntity busEntityForUpdate) {
         if (Objects.isNull(busEntityForUpdate.getId())) {
-            save(busEntityForUpdate);
+            return save(busEntityForUpdate);
         }
 
         final BusEntity bus = findById(busEntityForUpdate.getId());

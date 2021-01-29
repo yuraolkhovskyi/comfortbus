@@ -3,6 +3,9 @@ package com.lp.work.comfortbus.service;
 import com.lp.work.comfortbus.dto.ride.RequestRideDTO;
 import com.lp.work.comfortbus.dto.ride.ResponseRideDTO;
 import com.lp.work.comfortbus.entity.*;
+import com.lp.work.comfortbus.exception.ExceptionConstants;
+import com.lp.work.comfortbus.exception.SystemException;
+import com.lp.work.comfortbus.exception.code.ServiceErrorCode;
 import com.lp.work.comfortbus.repository.RideRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -76,7 +79,7 @@ public class RideService {
     public RideEntity findById(final Long rideId) {
         Optional<RideEntity> ride = rideRepository.findById(rideId);
         if (ride.isEmpty()) {
-            throw new RuntimeException("There is no ride with such id:" + rideId);
+            throw new SystemException(ExceptionConstants.BAD_REQUEST_MESSAGE, ServiceErrorCode.BAD_REQUEST);
         }
         return ride.get();
     }

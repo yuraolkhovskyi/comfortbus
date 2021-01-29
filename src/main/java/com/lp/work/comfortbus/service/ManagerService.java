@@ -1,6 +1,9 @@
 package com.lp.work.comfortbus.service;
 
 import com.lp.work.comfortbus.entity.ManagerEntity;
+import com.lp.work.comfortbus.exception.ExceptionConstants;
+import com.lp.work.comfortbus.exception.SystemException;
+import com.lp.work.comfortbus.exception.code.ServiceErrorCode;
 import com.lp.work.comfortbus.repository.ManagerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +31,7 @@ public class ManagerService {
     public ManagerEntity findById(final Long driverId) {
         Optional<ManagerEntity> manager = managerRepository.findById(driverId);
         if (manager.isEmpty()) {
-            throw new RuntimeException("There is no manager with such id:" + driverId);
+            throw new SystemException(ExceptionConstants.BAD_REQUEST_MESSAGE, ServiceErrorCode.BAD_REQUEST);
         }
         return manager.get();
     }

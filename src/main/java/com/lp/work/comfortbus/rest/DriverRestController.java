@@ -1,5 +1,6 @@
 package com.lp.work.comfortbus.rest;
 
+import com.lp.work.comfortbus.dto.driver.ResponseDriverDTO;
 import com.lp.work.comfortbus.entity.DriverEntity;
 import com.lp.work.comfortbus.service.DriverService;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class DriverRestController {
 
     @GetMapping(value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<DriverEntity> findAllDrivers() {
+    public List<ResponseDriverDTO> findAllDrivers() {
         return driverService.findAll();
     }
 

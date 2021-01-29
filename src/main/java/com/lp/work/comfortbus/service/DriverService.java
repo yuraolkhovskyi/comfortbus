@@ -1,6 +1,10 @@
 package com.lp.work.comfortbus.service;
 
+import com.lp.work.comfortbus.dto.driver.ResponseDriverDTO;
 import com.lp.work.comfortbus.entity.DriverEntity;
+import com.lp.work.comfortbus.exception.ExceptionConstants;
+import com.lp.work.comfortbus.exception.SystemException;
+import com.lp.work.comfortbus.exception.code.ServiceErrorCode;
 import com.lp.work.comfortbus.repository.DriverRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -22,14 +27,24 @@ public class DriverService {
     }
 
     //read
-    public List<DriverEntity> findAll() {
-        return driverRepository.findAll();
+    public List<ResponseDriverDTO> findAll() {
+        List<DriverEntity> drivers = driverRepository.findAll();
+
+        return drivers.stream()
+                .map(e -> new ResponseDriverDTO(
+                        e.getFirstName(),
+                        e.getLastName(),
+                        e.getBirthDate(),
+                        e.getPhoneNumber()
+                ))
+                .collect(Collectors.toList());
+
     }
 
     public DriverEntity findById(final Long driverId) {
         Optional<DriverEntity> driver = driverRepository.findById(driverId);
         if (driver.isEmpty()) {
-            throw new RuntimeException("There is no driver with such id:" + driverId);
+            throw new SystemException(ExceptionConstants.BAD_REQUEST_MESSAGE, ServiceErrorCode.BAD_REQUEST);
         }
         return driver.get();
     }

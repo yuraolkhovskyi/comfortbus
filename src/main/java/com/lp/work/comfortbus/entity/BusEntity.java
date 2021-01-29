@@ -1,5 +1,6 @@
 package com.lp.work.comfortbus.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class BusEntity {
     @Column(name = "is_wifi", updatable = false)
     private Boolean isWiFi;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     private List<RideEntity> rides;
 

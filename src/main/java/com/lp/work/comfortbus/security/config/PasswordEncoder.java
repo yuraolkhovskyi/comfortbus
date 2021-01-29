@@ -1,4 +1,4 @@
-package com.lp.work.comfortbus.security;
+package com.lp.work.comfortbus.security.config;
 
 import lombok.Data;
 import org.springframework.context.annotation.Bean;

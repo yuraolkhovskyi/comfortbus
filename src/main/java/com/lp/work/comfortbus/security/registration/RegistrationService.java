@@ -36,6 +36,7 @@ public class RegistrationService {
                         AppUserRole.USER)
         );
 
+        // TODO: 26.01.21 email sender
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
 //        emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
 

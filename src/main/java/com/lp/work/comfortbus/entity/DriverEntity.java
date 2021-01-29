@@ -1,5 +1,6 @@
 package com.lp.work.comfortbus.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class DriverEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY)
     private List<RideEntity> rides;
 

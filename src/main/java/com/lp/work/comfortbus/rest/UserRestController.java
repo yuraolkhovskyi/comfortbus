@@ -1,5 +1,6 @@
 package com.lp.work.comfortbus.rest;
 
+import com.lp.work.comfortbus.dto.user.ResponseUserDTO;
 import com.lp.work.comfortbus.entity.UserEntity;
 import com.lp.work.comfortbus.service.UserService;
 import lombok.AllArgsConstructor;
@@ -23,7 +24,7 @@ public class UserRestController {
 
     @GetMapping(value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<UserEntity> findAll() {
+    public List<ResponseUserDTO> findAll() {
         return userService.findAll();
     }
 
