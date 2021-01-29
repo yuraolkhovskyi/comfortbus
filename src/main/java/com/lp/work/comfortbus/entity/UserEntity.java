@@ -33,16 +33,7 @@ public class UserEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "user_ride",
-            joinColumns = {
-                    @JoinColumn(name = "user_id"),
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "ride_id")
-            }
-    )
+    @ManyToMany(mappedBy = "users")
     private Set<RideEntity> rides = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

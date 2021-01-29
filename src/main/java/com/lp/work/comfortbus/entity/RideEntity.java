@@ -49,7 +49,16 @@ public class RideEntity {
     @JoinColumn(name = "bus_id", nullable = false)
     private BusEntity bus;
 
-    @ManyToMany(mappedBy = "rides")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "ride_user",
+            joinColumns = {
+                    @JoinColumn(name = "ride_id"),
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "user_id")
+            }
+    )
     private Set<UserEntity> users = new LinkedHashSet<>();
 
 }

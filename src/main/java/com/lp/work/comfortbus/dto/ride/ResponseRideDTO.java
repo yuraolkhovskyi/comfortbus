@@ -1,4 +1,4 @@
-package com.lp.work.comfortbus.dto;
+package com.lp.work.comfortbus.dto.ride;
 
 import com.lp.work.comfortbus.entity.BusEntity;
 import com.lp.work.comfortbus.entity.DriverEntity;
@@ -9,15 +9,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RideDTO {
+public class ResponseRideDTO {
 
     private Long id;
 
@@ -31,13 +29,12 @@ public class RideDTO {
 
     private RideStatus rideStatus;
 
-    private Long driverId;
+    private DriverEntity driverEntity;
 
-    private Long managerId;
+    private ManagerEntity managerEntity;
 
-    private Long busId;
+    private BusEntity busEntity;
 
-    private Set<Long> users;
-
+    private Set<UserEntity> users;
 
 }

@@ -1,6 +1,7 @@
 package com.lp.work.comfortbus.rest;
 
-import com.lp.work.comfortbus.dto.RideDTO;
+import com.lp.work.comfortbus.dto.ride.RequestRideDTO;
+import com.lp.work.comfortbus.dto.ride.ResponseRideDTO;
 import com.lp.work.comfortbus.entity.RideEntity;
 import com.lp.work.comfortbus.service.RideService;
 import lombok.AllArgsConstructor;
@@ -18,26 +19,26 @@ public class RideRestController {
 
     @PostMapping(value = "/save")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public RideEntity save(@RequestBody final RideDTO rideDTO) {
-        return rideService.save(rideDTO);
+    public ResponseRideDTO save(@RequestBody final RequestRideDTO requestRideDTO) throws IllegalAccessException {
+        return rideService.save(requestRideDTO);
     }
 
     @GetMapping(value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
-    public List<RideEntity> findAllDrivers() {
+    public List<RideEntity> findAllRides() {
         return rideService.findAll();
     }
 
     @GetMapping(value = "/get/{rideId}")
     @ResponseStatus(value = HttpStatus.OK)
-    public RideEntity findDriverById(@PathVariable final Long rideId) {
+    public RideEntity findRideById(@PathVariable final Long rideId) {
         return rideService.findById(rideId);
     }
 
     @PatchMapping(value = "/update")
     @ResponseStatus(value = HttpStatus.OK)
-    public RideEntity update(@RequestBody final RideDTO rideDTO) {
-        return rideService.update(rideDTO);
+    public ResponseRideDTO update(@RequestBody final RequestRideDTO requestRideDTO) throws IllegalAccessException {
+        return rideService.update(requestRideDTO);
     }
 
     @DeleteMapping(value = "/delete/{rideId}")

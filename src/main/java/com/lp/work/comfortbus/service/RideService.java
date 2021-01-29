@@ -1,6 +1,7 @@
 package com.lp.work.comfortbus.service;
 
-import com.lp.work.comfortbus.dto.RideDTO;
+import com.lp.work.comfortbus.dto.ride.RequestRideDTO;
+import com.lp.work.comfortbus.dto.ride.ResponseRideDTO;
 import com.lp.work.comfortbus.entity.*;
 import com.lp.work.comfortbus.repository.RideRepository;
 import lombok.AllArgsConstructor;
@@ -21,37 +22,50 @@ public class RideService {
 
 
     //create
-    public RideEntity save(final RideDTO rideDTO) {
+    public ResponseRideDTO save(final RequestRideDTO requestRideDTO) throws IllegalAccessException {
 
-        DriverEntity driverEntity = driverService.findById(rideDTO.getDriverId());
-        ManagerEntity managerEntity = managerService.findById(rideDTO.getManagerId());
-        BusEntity busEntity = busService.findById(rideDTO.getBusId());
+        final DriverEntity driverEntity = driverService.findById(requestRideDTO.getDriverId());
+        final ManagerEntity managerEntity = managerService.findById(requestRideDTO.getManagerId());
+        final BusEntity busEntity = busService.findById(requestRideDTO.getBusId());
 
-        Set<UserEntity> users = new LinkedHashSet<>();
-        for (Long userId : rideDTO.getUsers()) {
+        final Set<UserEntity> users = new LinkedHashSet<>();
+        for (Long userId : requestRideDTO.getUsers()) {
             UserEntity user = userService.findById(userId);
             users.add(user);
         }
 
-        RideEntity rideEntity = new RideEntity();
+        final RideEntity rideEntity = new RideEntity();
 
-        if (Objects.nonNull(rideDTO.getId())) {
-            RideEntity rideEntityById = findById(rideDTO.getId());
+        //in case if update
+        if (Objects.nonNull(requestRideDTO.getId())) {
+            RideEntity rideEntityById = findById(requestRideDTO.getId());
             rideEntity.setId(rideEntityById.getId());
         }
 
-        rideEntity.setDirectionFrom(rideDTO.getDirectionFrom());
-        rideEntity.setDirectionTo(rideDTO.getDirectionTo());
-        rideEntity.setDepartureDate(rideDTO.getDepartureDate());
-        rideEntity.setArrivalDate(rideDTO.getArrivalDate());
-        rideEntity.setRideStatus(rideDTO.getRideStatus());
+        rideEntity.setDirectionFrom(requestRideDTO.getDirectionFrom());
+        rideEntity.setDirectionTo(requestRideDTO.getDirectionTo());
+        rideEntity.setDepartureDate(requestRideDTO.getDepartureDate());
+        rideEntity.setArrivalDate(requestRideDTO.getArrivalDate());
+        rideEntity.setRideStatus(requestRideDTO.getRideStatus());
         rideEntity.setDriver(driverEntity);
         rideEntity.setManager(managerEntity);
         rideEntity.setBus(busEntity);
         rideEntity.setUsers(users);
 
 
-        return rideRepository.save(rideEntity);
+        final RideEntity saved = rideRepository.save(rideEntity);
+        return new ResponseRideDTO(
+                saved.getId(),
+                saved.getDirectionFrom(),
+                saved.getDirectionTo(),
+                saved.getDepartureDate(),
+                saved.getArrivalDate(),
+                saved.getRideStatus(),
+                saved.getDriver(),
+                saved.getManager(),
+                saved.getBus(),
+                users
+        );
     }
 
     //read
@@ -68,8 +82,8 @@ public class RideService {
     }
 
     //update
-    public RideEntity update(final RideDTO rideDTOForUpdate) {
-        return save(rideDTOForUpdate);
+    public ResponseRideDTO update(final RequestRideDTO requestRideDTOForUpdate) throws IllegalAccessException {
+        return save(requestRideDTOForUpdate);
     }
 
     //delete
