@@ -39,11 +39,11 @@ public class RideEntity {
 
     @ManyToOne
     @JoinColumn(name = "driver_id", nullable = false)
-    private DriverEntity driver;
+    private UserEntity driver;
 
     @ManyToOne
     @JoinColumn(name = "manager_id", nullable = false)
-    private ManagerEntity manager;
+    private UserEntity manager;
 
     @ManyToOne
     @JoinColumn(name = "bus_id", nullable = false)

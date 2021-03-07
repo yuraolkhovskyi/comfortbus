@@ -10,6 +10,7 @@ import com.edu.work.comfortbus.repository.RideRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 @Service
@@ -19,16 +20,15 @@ public class RideService {
     private final RideRepository rideRepository;
 
     private final BusService busService;
-    private final DriverService driverService;
-    private final ManagerService managerService;
     private final UserService userService;
 
 
     //create
-    public ResponseRideDTO save(final RequestRideDTO requestRideDTO) throws IllegalAccessException {
+    @Transactional
+    public ResponseRideDTO save(final RequestRideDTO requestRideDTO) {
 
-        final DriverEntity driverEntity = driverService.findById(requestRideDTO.getDriverId());
-        final ManagerEntity managerEntity = managerService.findById(requestRideDTO.getManagerId());
+        final UserEntity driverEntity = userService.findById(requestRideDTO.getDriverId());
+        final UserEntity managerEntity = userService.findById(requestRideDTO.getManagerId());
         final BusEntity busEntity = busService.findById(requestRideDTO.getBusId());
 
         final Set<UserEntity> users = new LinkedHashSet<>();
@@ -85,7 +85,7 @@ public class RideService {
     }
 
     //update
-    public ResponseRideDTO update(final RequestRideDTO requestRideDTOForUpdate) throws IllegalAccessException {
+    public ResponseRideDTO update(final RequestRideDTO requestRideDTOForUpdate) {
         return save(requestRideDTOForUpdate);
     }
 

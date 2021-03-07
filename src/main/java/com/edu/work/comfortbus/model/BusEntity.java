@@ -20,19 +20,19 @@ public class BusEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "bus_number", updatable = false)
+    @Column(name = "bus_number")
     private String busNumber;
 
     @Column(name = "number_of_seats", updatable = false)
     private Long numberOfSeats;
 
-    @Column(name = "is_working", updatable = false)
+    @Column(name = "is_working")
     private Boolean isWorking;
 
-    @Column(name = "is_rosette", updatable = false)
+    @Column(name = "is_rosette")
     private Boolean isRosette;
 
-    @Column(name = "is_wifi", updatable = false)
+    @Column(name = "is_wifi")
     private Boolean isWiFi;
 
     @JsonIgnore

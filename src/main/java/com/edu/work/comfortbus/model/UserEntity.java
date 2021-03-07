@@ -1,9 +1,11 @@
 package com.edu.work.comfortbus.model;
 
+import com.edu.work.comfortbus.model.enumeration.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"rides", "comments"})
 public class UserEntity {
 
     @Id
@@ -31,12 +34,15 @@ public class UserEntity {
     @Column(name = "birth_date")
     private String birthDate;
 
+    @Column(name = "user_role")
+    private UserRole userRole;
+
     @Column(name = "phone_number")
     private String phoneNumber;
 
     @ManyToMany(mappedBy = "users")
     @JsonIgnore
-    private Set<RideEntity> rides = new LinkedHashSet<>();
+    private Set<RideEntity> rides;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)

@@ -1,8 +1,6 @@
 package com.edu.work.comfortbus.dto.ride;
 
 import com.edu.work.comfortbus.model.BusEntity;
-import com.edu.work.comfortbus.model.DriverEntity;
-import com.edu.work.comfortbus.model.ManagerEntity;
 import com.edu.work.comfortbus.model.UserEntity;
 import com.edu.work.comfortbus.model.enumeration.RideStatus;
 import lombok.AllArgsConstructor;
@@ -29,9 +27,9 @@ public class ResponseRideDTO {
 
     private RideStatus rideStatus;
 
-    private DriverEntity driverEntity;
+    private UserEntity driverEntity;
 
-    private ManagerEntity managerEntity;
+    private UserEntity managerEntity;
 
     private BusEntity busEntity;
 
