@@ -18,11 +18,6 @@ import java.util.Date;
 @Slf4j
 public class SwaggerConfig {
 
-    /**
-     * Customizing the Docket bean.
-     *
-     * @return docket - {@code Docket}
-     */
     @Bean
     public Docket swaggerSpringfoxDocket() {
         log.info("Starting Swagger");
