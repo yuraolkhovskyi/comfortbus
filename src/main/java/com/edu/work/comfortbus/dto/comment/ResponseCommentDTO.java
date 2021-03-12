@@ -1,6 +1,6 @@
 package com.edu.work.comfortbus.dto.comment;
 
-import com.edu.work.comfortbus.model.UserEntity;
+import com.edu.work.comfortbus.domain.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

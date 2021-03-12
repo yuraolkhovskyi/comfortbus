@@ -3,7 +3,7 @@ package com.edu.work.comfortbus.service;
 import com.edu.work.comfortbus.dto.ride.RequestRideDTO;
 import com.edu.work.comfortbus.exception.ExceptionConstants;
 import com.edu.work.comfortbus.exception.SystemException;
-import com.edu.work.comfortbus.model.*;
+import com.edu.work.comfortbus.domain.*;
 import com.edu.work.comfortbus.dto.ride.ResponseRideDTO;
 import com.edu.work.comfortbus.exception.code.ServiceErrorCode;
 import com.edu.work.comfortbus.repository.RideRepository;

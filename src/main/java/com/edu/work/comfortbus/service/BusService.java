@@ -3,7 +3,7 @@ package com.edu.work.comfortbus.service;
 import com.edu.work.comfortbus.exception.ExceptionConstants;
 import com.edu.work.comfortbus.exception.SystemException;
 import com.edu.work.comfortbus.exception.code.ServiceErrorCode;
-import com.edu.work.comfortbus.model.BusEntity;
+import com.edu.work.comfortbus.domain.BusEntity;
 import com.edu.work.comfortbus.repository.BusRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.edu.work.comfortbus.service;
 
 import com.edu.work.comfortbus.exception.ExceptionConstants;
-import com.edu.work.comfortbus.model.CommentEntity;
-import com.edu.work.comfortbus.model.UserEntity;
+import com.edu.work.comfortbus.domain.CommentEntity;
+import com.edu.work.comfortbus.domain.UserEntity;
 import com.edu.work.comfortbus.dto.comment.RequestCommentDTO;
 import com.edu.work.comfortbus.dto.comment.ResponseCommentDTO;
 import com.edu.work.comfortbus.exception.SystemException;

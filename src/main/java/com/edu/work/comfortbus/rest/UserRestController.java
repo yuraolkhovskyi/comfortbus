@@ -1,7 +1,7 @@
 package com.edu.work.comfortbus.rest;
 
 import com.edu.work.comfortbus.dto.user.ResponseUserDTO;
-import com.edu.work.comfortbus.model.UserEntity;
+import com.edu.work.comfortbus.domain.UserEntity;
 import com.edu.work.comfortbus.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/api//user")
 @AllArgsConstructor
 public class UserRestController {
 

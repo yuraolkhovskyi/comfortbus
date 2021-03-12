@@ -1,12 +1,16 @@
 package com.edu.work.comfortbus.service;
 
+import com.edu.work.comfortbus.domain.UserEntity;
+import com.edu.work.comfortbus.dto.user.ResponseUserDTO;
 import com.edu.work.comfortbus.exception.ExceptionConstants;
 import com.edu.work.comfortbus.exception.SystemException;
-import com.edu.work.comfortbus.model.UserEntity;
-import com.edu.work.comfortbus.dto.user.ResponseUserDTO;
 import com.edu.work.comfortbus.exception.code.ServiceErrorCode;
+import com.edu.work.comfortbus.model.User;
 import com.edu.work.comfortbus.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +20,30 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        final UserEntity entity = userRepository.findUserByUsername(username);
+        if (Objects.isNull(entity)) {
+            throw new UsernameNotFoundException("User is not found.");
+        }
+
+//        return new User(entity.getId(),
+//                entity.getEmail(),
+//                entity.getPassword(),
+//                entity.getEnabled(),
+//                entity.getFirstName(),
+//                entity.getLastName(),
+//                entity.getPhoneNumber(),
+//                entity.getBirthDate(),
+//                entity.getUserRole(),
+//                entity.getUsername(),
+//                entity.getProperties());
+        return null;
+    }
 
     //create
     public UserEntity save(final UserEntity userEntity) {

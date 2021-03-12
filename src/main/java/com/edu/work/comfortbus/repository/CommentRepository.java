@@ -1,6 +1,6 @@
 package com.edu.work.comfortbus.repository;
 
-import com.edu.work.comfortbus.model.CommentEntity;
+import com.edu.work.comfortbus.domain.CommentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

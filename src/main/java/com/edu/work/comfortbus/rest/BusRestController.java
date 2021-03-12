@@ -1,6 +1,6 @@
 package com.edu.work.comfortbus.rest;
 
-import com.edu.work.comfortbus.model.BusEntity;
+import com.edu.work.comfortbus.domain.BusEntity;
 import com.edu.work.comfortbus.service.BusService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

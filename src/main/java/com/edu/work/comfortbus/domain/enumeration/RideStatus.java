@@ -1,4 +1,4 @@
-package com.edu.work.comfortbus.model.enumeration;
+package com.edu.work.comfortbus.domain.enumeration;
 
 public enum RideStatus {
 

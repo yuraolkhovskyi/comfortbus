@@ -1,4 +1,4 @@
-package com.edu.work.comfortbus.model;
+package com.edu.work.comfortbus.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

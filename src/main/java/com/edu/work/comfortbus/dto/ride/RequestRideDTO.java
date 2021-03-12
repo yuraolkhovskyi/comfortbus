@@ -1,6 +1,6 @@
 package com.edu.work.comfortbus.dto.ride;
 
-import com.edu.work.comfortbus.model.enumeration.RideStatus;
+import com.edu.work.comfortbus.domain.enumeration.RideStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
