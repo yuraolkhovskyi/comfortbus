@@ -68,7 +68,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
-
+        System.out.println("3");
     }
 
 
