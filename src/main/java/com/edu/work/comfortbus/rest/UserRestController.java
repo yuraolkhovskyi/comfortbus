@@ -1,7 +1,7 @@
 package com.edu.work.comfortbus.rest;
 
-import com.edu.work.comfortbus.dto.user.ResponseUserDTO;
 import com.edu.work.comfortbus.domain.UserEntity;
+import com.edu.work.comfortbus.dto.user.ResponseUserDTO;
 import com.edu.work.comfortbus.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api//user")
+@RequestMapping(value = "/api/user")
 @AllArgsConstructor
 public class UserRestController {
 
@@ -25,6 +25,14 @@ public class UserRestController {
     @GetMapping(value = "/list")
     @ResponseStatus(value = HttpStatus.OK)
     public List<ResponseUserDTO> findAll() {
+//
+//        ResponseUserDTO dto1 = new ResponseUserDTO("1", "1", "1", "1");
+//        ResponseUserDTO dto2 = new ResponseUserDTO("2", "2", "2", "2");
+//        ResponseUserDTO dto3 = new ResponseUserDTO("3", "3", "3", "3");
+//
+//        List<ResponseUserDTO> users = List.of(dto1, dto2, dto3);
+//
+//        return users;
         return userService.findAll();
     }
 

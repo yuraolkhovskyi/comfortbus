@@ -23,7 +23,7 @@ public class BusEntity {
     @Column(name = "bus_number")
     private String busNumber;
 
-    @Column(name = "number_of_seats", updatable = false)
+    @Column(name = "number_of_seats")
     private Long numberOfSeats;
 
     @Column(name = "is_working")

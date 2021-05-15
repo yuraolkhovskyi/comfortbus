@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -28,6 +30,12 @@ public class RideEntity {
     @Column(name = "direction_to")
     private String directionTo;
 
+    @Column(name = "date_of_trip")
+    private LocalDateTime dateOfTrip;
+
+    @Column(name = "price")
+    private BigDecimal price;
+
     @Column(name = "departure_date")
     private LocalDate departureDate;
 
@@ -36,6 +44,9 @@ public class RideEntity {
 
     @Enumerated(EnumType.STRING)
     private RideStatus rideStatus;
+
+    @Column(name = "passengers_amount")
+    private Integer amountOfPassengers;
 
     @ManyToOne
     @JoinColumn(name = "driver_id", nullable = false)

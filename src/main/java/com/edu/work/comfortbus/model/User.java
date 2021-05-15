@@ -1,6 +1,5 @@
 package com.edu.work.comfortbus.model;
 
-import com.edu.work.comfortbus.domain.enumeration.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ public class User {
     private String lastName;
     private String phoneNumber;
     private String birthDate;
-    private UserRole userRole;
+//    private UserRole userRole;
     private String username;
     private String properties;
 

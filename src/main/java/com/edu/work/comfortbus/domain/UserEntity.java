@@ -1,6 +1,6 @@
 package com.edu.work.comfortbus.domain;
 
-import com.edu.work.comfortbus.domain.enumeration.UserRole;
+//import com.edu.work.comfortbus.domain.enumeration.UserRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,10 +28,10 @@ public class UserEntity {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnore
-    @NotNull
-    @Column(name = "password", length = 60)
-    private String password;
+//    @JsonIgnore
+//    @NotNull
+//    @Column(name = "password", length = 60)
+//    private String password;
 
     @Column(name = "enabled")
     private Boolean enabled;
@@ -48,8 +48,8 @@ public class UserEntity {
     @Column(name = "birth_date")
     private String birthDate;
 
-    @Column(name = "user_role")
-    private UserRole userRole;
+//    @Column(name = "user_role")
+//    private UserRole userRole;
 
     @Column(name = "user_name", length = 40, nullable = false)
     private String username;

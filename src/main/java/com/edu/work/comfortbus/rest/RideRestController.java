@@ -1,8 +1,8 @@
 package com.edu.work.comfortbus.rest;
 
+import com.edu.work.comfortbus.domain.RideEntity;
 import com.edu.work.comfortbus.dto.ride.RequestRideDTO;
 import com.edu.work.comfortbus.dto.ride.ResponseRideDTO;
-import com.edu.work.comfortbus.domain.RideEntity;
 import com.edu.work.comfortbus.service.RideService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,6 +27,15 @@ public class RideRestController {
     @ResponseStatus(value = HttpStatus.OK)
     public List<RideEntity> findAllRides() {
         return rideService.findAll();
+    }
+
+    @GetMapping(value = "/search")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<RideEntity> findRidesByParams(@RequestParam(value = "directionFrom", required = true) String directionFrom,
+                                              @RequestParam(value = "directionFrom", required = false) String directionTo,
+                                              @RequestParam(value = "dateOfTrip", required = false) String dateOfTrip,
+                                              @RequestParam(value = "amountOfPassengers", required = false) Long amountOfPassengers) {
+        return rideService.findRidesByParams(directionFrom, directionTo, dateOfTrip, amountOfPassengers);
     }
 
     @GetMapping(value = "/get/{rideId}")
