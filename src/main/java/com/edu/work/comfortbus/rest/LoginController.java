@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
 public class LoginController {
 
     @GetMapping(value = "/index")
@@ -13,7 +12,7 @@ public class LoginController {
         return "index";
     }
 
-    @GetMapping(value = "login")
+    @GetMapping(value = "/login")
     public String getLoginPage() {
         return "login";
     }
